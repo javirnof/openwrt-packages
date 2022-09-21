@@ -22,9 +22,31 @@ define Package/ethorder/description
 	Ethernet order by mac. Define static asignation for eth interfaces based on macs
 endef
 
+define Build/Compile
+endef
+
+define Build/Configure
+endef
+
 define Package/ethorder/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ethorder-$(PKG_VERSION)/ethorder $(1)/etc/init.d/ethorder
 endef
- 
+
+define Package/ethorder/postinst
+#!/bin/sh
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	/etc/init.d/ethorder enabled
+fi
+exit 0
+endef
+
+define Package/ethorder/prerm
+#!/bin/sh
+if [ -n "$${IPKG_INSTROOT}" ]; then
+	/etc/init.d/ethorder disable
+fi
+exit 0
+endef
+
 $(eval $(call BuildPackage,ethorder))
