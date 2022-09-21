@@ -21,10 +21,10 @@ endef
 define Package/ethorder/description
 	Ethernet order by mac. Define static asignation for eth interfaces based on macs
 endef
- 
+
 define Package/ethorder/install
-        $(INSTALL_DIR) $(1)/etc/init.d
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/ethorder-$(PKG_VERSION)/ethorder $(1)/etc/init.d/ethorder
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/ethorder-$(PKG_VERSION)/ethorder $(1)/etc/init.d/ethorder
 endef
  
 $(eval $(call BuildPackage,ethorder))
