@@ -13,7 +13,7 @@ grep(){
 #bridges and virtual interfaces are already excluded by  /sys/class/net/*/device/uevent as only physical interfaces have that
 for i in $( ls /sys/class/net/*/device/uevent | awk -F'/' '{print $5}' | tr '\n' ' ' ) ;
 do
-	mac_address=$( grep $i /etc/config/ethorder | awk '{print $3}' | tr -d '"' )
+	mac_address=$( grep $i /etc/config/ethorder | grep "^[^#]" | awk '{print $3}' | tr -d '"' )
 	if [ "$mac_address" != '' ]; then
 		ip link set "$i" down
 		ip link set "$i" name old"$i"
@@ -24,7 +24,7 @@ for i in $( ls /sys/class/net/*/device/uevent | awk -F'/' '{print $5}' | tr '\n'
 do
 
 mac_address=$( cat /sys/class/net/$i/address  )
-	interface_name=$( grep -i $mac_address /etc/config/ethorder | awk '{print $2}' )
+	interface_name=$( grep -i $mac_address /etc/config/ethorder | grep "^[^#]" | awk '{print $2}' )
 	if [ "$interface_name" != '' ]; then
 		ip link set "$i" down 
 		ip link set "$i" name "$interface_name"
