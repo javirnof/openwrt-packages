@@ -4,11 +4,6 @@ PKG_NAME:=ethorder
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
  
-PKG_BUILD_DIR:=$(BUILD_DIR)/ethorder-$(PKG_VERSION)
-PKG_SOURCE:=$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/javirnof/ethorder/archive/refs/tags/
-PKG_HASH:=349fb8ed73a06fe0ce240a5436b0fdaa
- 
 include $(INCLUDE_DIR)/package.mk
  
 define Package/ethorder
