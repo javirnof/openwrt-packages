@@ -1,0 +1,4 @@
+#config mac-static-interfaces
+#  option eth0 "00:00:00:5b:a5:19"
+#  option eth1 "00:00:00:5b:a5:1a"
+#  option eth2 "00:00:00:5b:a5:1b"
